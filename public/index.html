@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maaz Mehar | Portfolio</title>
+  <meta name="description" content="Maaz Mehar — Web Developer & MERN Stack Developer. Modern websites, responsive apps, and professional UI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="logo">Maaz <span>Mehar</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-glow one"></div>
+    <div class="hero-glow two"></div>
+    <div class="hero-inner">
+      <div class="hero-content" data-aos="fade-right">
+        <h1 class="hero-brand"><span>Maaz</span><span>Mehar</span></h1>
+        <p class="hero-role"><span id="typing"></span></p>
+        <p class="hero-copy">
+          Building modern websites and MERN stack applications with clean code,
+          responsive layouts, and glass-smooth interfaces.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
+          <a href="#projects" class="btn btn-ghost"><i class="fas fa-briefcase"></i> View Work</a>
+        </div>
+      </div>
+      <div class="hero-visual" data-aos="zoom-in">
+        <div class="hero-frame">
+          <img src="/uploads/profile.jpg" alt="Maaz Mehar" id="heroImg"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <div class="hero-placeholder" style="display:none">MM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>About Me</h2>
+        <p>A developer focused on polished experiences and reliable full-stack delivery.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-media glass" data-aos="zoom-in">
+          <img src="/uploads/about.jpg" alt="About Maaz"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <div class="about-fallback" style="display:none"><i class="fas fa-user"></i></div>
+        </div>
+        <div class="about-panel glass" data-aos="fade-left">
+          <h3>Who Am I?</h3>
+          <p>
+            Hi, I'm <strong>Maaz Mehar</strong>, a passionate web developer specializing in modern,
+            responsive, and user-friendly websites.
+          </p>
+          <p>
+            I work with HTML, CSS, JavaScript, React.js, Node.js, Express.js, and MongoDB to ship
+            professional web applications.
+          </p>
+          <p>
+            Currently leveling up advanced MERN skills and available for freelance projects.
+          </p>
+          <a href="#projects" class="btn btn-primary" style="margin-top:22px">
+            <i class="fas fa-briefcase"></i> View Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>My Skills</h2>
+        <p>Tools and technologies I use to design, build, and ship products.</p>
+      </div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>My Projects</h2>
+        <p>Selected work — managed and updated from the admin panel.</p>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+        <div class="empty-state glass">Loading projects…</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>Certificates</h2>
+        <p>Credentials and achievements uploaded through the admin dashboard.</p>
+      </div>
+      <div class="certs-grid" id="certsGrid">
+        <div class="empty-state glass">Loading certificates…</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>My Services</h2>
+        <p>What I can help you build.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card glass" data-aos="zoom-in">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Frontend Development</h3>
+          <p>Modern responsive websites.</p>
+        </div>
+        <div class="service-card glass" data-aos="zoom-in">
+          <i class="fas fa-server"></i>
+          <h3>Backend Development</h3>
+          <p>Node.js & Express APIs.</p>
+        </div>
+        <div class="service-card glass" data-aos="zoom-in">
+          <i class="fas fa-mobile-screen-button"></i>
+          <h3>Responsive Design</h3>
+          <p>Mobile, tablet & desktop.</p>
+        </div>
+        <div class="service-card glass" data-aos="zoom-in">
+          <i class="fas fa-palette"></i>
+          <h3>UI / UX Design</h3>
+          <p>Professional glass interfaces.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>Experience</h2>
+        <p>Numbers that reflect the journey so far.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card glass" data-aos="fade-up"><h3>15+</h3><p>Projects</p></div>
+        <div class="stat-card glass" data-aos="fade-up"><h3>10+</h3><p>Clients</p></div>
+        <div class="stat-card glass" data-aos="fade-up"><h3>2+</h3><p>Years Learning</p></div>
+        <div class="stat-card glass" data-aos="fade-up"><h3>12+</h3><p>Technologies</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <h2>Contact Me</h2>
+        <p>Have a project in mind? Send a message — it goes straight to my inbox.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-info glass" data-aos="fade-right">
+          <h3>Let's build something amazing</h3>
+          <p>Open to freelance work, collaborations, and full-stack projects.</p>
+          <ul class="contact-list">
+            <li><i class="fas fa-phone"></i> 03198018795</li>
+            <li><i class="fas fa-envelope"></i> maazmehar9850@gmail.com</li>
+            <li><i class="fas fa-location-dot"></i> Pakistan</li>
+          </ul>
+        </div>
+        <form class="contact-form glass" id="contactForm" data-aos="fade-left">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" />
+          </div>
+          <div class="form-row">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Project inquiry" />
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell me about your project…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="contactBtn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Maaz Mehar</h3>
+        <p>Professional Web Developer & MERN Stack Developer. I build modern, responsive, user-friendly websites.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <p><a href="#home">Home</a></p>
+        <p><a href="#about">About</a></p>
+        <p><a href="#projects">Projects</a></p>
+        <p><a href="#certificates">Certificates</a></p>
+        <p><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <h3>Follow Me</h3>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/maaz-mehar-04a7953a1" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/maazmehar9850-boop/maazportfolio.git" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.facebook.com/share/17qAsR5aZf/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/1tz_maaz_" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy container">© 2026 Maaz Mehar | All Rights Reserved</p>
+  </footer>
+
+  <a class="whatsapp-btn" href="https://wa.me/923198018795" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
