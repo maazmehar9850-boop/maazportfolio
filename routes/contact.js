@@ -1,16 +1,11 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-const Message = require('../models/Message');
 
 const router = express.Router();
 
 function isEmailConfigured() {
   const pass = process.env.EMAIL_PASS || '';
-  return (
-    pass &&
-    pass !== 'your_gmail_app_password' &&
-    !pass.includes('your_gmail')
-  );
+  return pass && pass !== 'your_gmail_app_password';
 }
 
 router.post('/', async (req, res) => {
@@ -21,21 +16,9 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Name, email, and message are required' });
     }
 
-    await Message.create({
-      name,
-      email,
-      subject: subject || 'Portfolio Contact',
-      message,
-    });
-
     if (!isEmailConfigured()) {
-      console.warn(
-        'Contact saved to MongoDB, but EMAIL_PASS is not set. Add a Gmail App Password in .env to send email.'
-      );
-      return res.json({
-        message:
-          'Message saved. Email is not configured yet — add a Gmail App Password to EMAIL_PASS in .env.',
-        emailSent: false,
+      return res.status(500).json({
+        error: 'Email not configured. Add Gmail App Password to EMAIL_PASS in .env file.',
       });
     }
 
@@ -64,19 +47,11 @@ router.post('/', async (req, res) => {
       `,
     });
 
-    res.json({ message: 'Message sent successfully', emailSent: true });
+    res.json({ message: 'Message sent successfully' });
   } catch (err) {
     console.error('Contact error:', err.message);
-
-    if (err.message && err.message.includes('Invalid login')) {
-      return res.status(500).json({
-        error:
-          'Gmail login failed. EMAIL_PASS must be a 16-character Gmail App Password (not your normal Gmail or admin password).',
-      });
-    }
-
     res.status(500).json({
-      error: 'Could not process your message. Please try again later.',
+      error: 'Could not send email. Check EMAIL_PASS in .env (Gmail App Password).',
     });
   }
 });

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maaz Mehar | Portfolio</title>
+  <meta name="description" content="Maaz Mehar — Web Developer & MERN Stack Developer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            deep: '#0a1628',
+            accent: '#3ecfbf',
+            accent2: '#f0a05a',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: #f4f7fb;
+      background: #0a1628;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(62, 207, 191, 0.28), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 90% 10%, rgba(240, 160, 90, 0.22), transparent 50%),
+        radial-gradient(ellipse 60% 50% at 70% 90%, rgba(26, 74, 92, 0.7), transparent 55%),
+        linear-gradient(160deg, #071018 0%, #0f2740 45%, #123847 100%);
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      pointer-events: none;
+    }
+    .glass {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
+    .hero-glow { animation: floatGlow 8s ease-in-out infinite; }
+    .hero-glow.two { animation-delay: -3s; }
+    @keyframes floatGlow {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.08); }
+    }
+    .hero-frame { animation: morph 10s ease-in-out infinite; }
+    @keyframes morph {
+      0%, 100% { border-radius: 36% 64% 52% 48% / 42% 38% 62% 58%; }
+      50% { border-radius: 58% 42% 38% 62% / 48% 56% 44% 52%; }
+    }
+    .gradient-text {
+      background: linear-gradient(120deg, #fff 20%, #3ecfbf 70%, #f0a05a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-scrolled {
+      background: rgba(10,22,40,.55);
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(20px);
+    }
+    #navMenu.open { display: flex !important; }
+    .card-glow {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
+    }
+    .card-glow::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(62, 207, 191, 0.45), transparent 42%);
+      opacity: 0;
+      transition: opacity .35s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .card-glow::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(105deg, transparent 20%, rgba(62, 207, 191, 0.28) 45%, rgba(255,255,255,0.18) 50%, rgba(62, 207, 191, 0.22) 55%, transparent 80%);
+      transform: skewX(-18deg);
+      transition: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card-glow:hover {
+      transform: translateY(-8px);
+      border-color: rgba(62, 207, 191, 0.55);
+      background: rgba(62, 207, 191, 0.12);
+      box-shadow:
+        0 0 0 1px rgba(62, 207, 191, 0.25),
+        0 0 28px rgba(62, 207, 191, 0.35),
+        0 20px 50px rgba(0,0,0,.35);
+    }
+    .card-glow:hover::before { opacity: 1; }
+    .card-glow:hover::after {
+      animation: cardShine .85s ease forwards;
+    }
+    .card-glow > * { position: relative; z-index: 2; }
+    @keyframes cardShine {
+      0% { left: -120%; }
+      100% { left: 140%; }
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- Navbar -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 py-3.5 transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-4 flex items-center justify-between gap-6">
+      <a href="#home" class="font-display font-bold text-xl tracking-tight">Maaz <span class="text-accent">Mehar</span></a>
+      <button id="menuBtn" class="md:hidden w-11 h-11 glass rounded-xl grid place-items-center" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul id="navMenu" class="hidden md:flex items-center gap-2 list-none">
+        <li><a href="#home" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">Home</a></li>
+        <li><a href="#about" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">About</a></li>
+        <li><a href="#skills" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">Skills</a></li>
+        <li><a href="#projects" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">Projects</a></li>
+        <li><a href="#contact" class="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="min-h-screen grid place-items-center relative overflow-hidden pt-28 pb-20 px-4">
+    <div class="hero-glow absolute w-[420px] h-[420px] rounded-full blur-[80px] opacity-45 bg-accent top-[10%] -left-[5%] pointer-events-none"></div>
+    <div class="hero-glow two absolute w-[420px] h-[420px] rounded-full blur-[80px] opacity-45 bg-accent2 bottom-[5%] -right-[8%] pointer-events-none"></div>
+    <div class="max-w-6xl w-full grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+      <div data-aos="fade-right">
+        <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight mb-4">
+          <span class="gradient-text block">Maaz</span>
+          <span class="gradient-text block">Mehar</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-white/70 mb-4 min-h-[1.6em]"><span id="typing" class="text-accent font-semibold"></span></p>
+        <p class="text-white/70 max-w-md mb-7 text-lg">Building modern websites and MERN stack applications with clean code, responsive layouts, and glass-smooth interfaces.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep shadow-lg shadow-accent/30 hover:-translate-y-1 transition"><i class="fas fa-paper-plane"></i> Hire Me</a>
+          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold glass hover:-translate-y-1 transition"><i class="fas fa-briefcase"></i> View Work</a>
+        </div>
+      </div>
+      <div class="justify-self-center lg:justify-self-end order-first lg:order-none" data-aos="zoom-in">
+        <div class="hero-frame w-72 sm:w-80 aspect-square p-2.5 bg-gradient-to-br from-accent/55 via-accent2/35 to-white/10 shadow-2xl">
+          <img src="profile.jpg" alt="Maaz Mehar" class="w-full h-full object-cover rounded-[inherit]" onerror="this.src='https://ui-avatars.com/api/?name=Maaz+Mehar&background=3ecfbf&color=041018&size=400'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">About Me</h2>
+        <p class="text-white/70 max-w-lg mx-auto">A developer focused on polished experiences and reliable full-stack delivery.</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-9 items-center">
+        <div class="glass rounded-3xl p-3 overflow-hidden" data-aos="zoom-in">
+          <img src="about.jpg" alt="About Maaz" class="w-full rounded-2xl aspect-[4/5] object-cover" onerror="this.style.display='none'" />
+        </div>
+        <div class="glass rounded-3xl p-8 lg:p-9" data-aos="fade-left">
+          <h3 class="font-display text-2xl font-bold mb-4">Who Am I?</h3>
+          <p class="text-white/70 mb-3">Hi, I'm <strong class="text-white">Maaz Mehar</strong>, a passionate web developer specializing in modern, responsive, and user-friendly websites.</p>
+          <p class="text-white/70 mb-3">I work with HTML, CSS, JavaScript, React.js, Node.js, Express.js, and MongoDB to ship professional web applications.</p>
+          <p class="text-white/70 mb-6">Currently leveling up advanced MERN skills and available for freelance projects.</p>
+          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep hover:-translate-y-1 transition"><i class="fas fa-briefcase"></i> View Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">My Skills</h2>
+        <p class="text-white/70">Tools and technologies I use to design, build, and ship products.</p>
+      </div>
+      <div id="skillsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">My Projects</h2>
+        <p class="text-white/70">Selected work and personal builds.</p>
+      </div>
+      <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">My Services</h2>
+        <p class="text-white/70">What I can help you build.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-laptop-code text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">Frontend Development</h3><p class="text-white/70 text-sm">Modern responsive websites.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-server text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">Backend Development</h3><p class="text-white/70 text-sm">Node.js & Express APIs.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-mobile-screen-button text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">Responsive Design</h3><p class="text-white/70 text-sm">Mobile, tablet & desktop.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-palette text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">UI / UX Design</h3><p class="text-white/70 text-sm">Professional glass interfaces.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Experience</h2>
+        <p class="text-white/70">Numbers that reflect the journey so far.</p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">15+</h3><p class="text-white/70 mt-2">Projects</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">10+</h3><p class="text-white/70 mt-2">Clients</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">2+</h3><p class="text-white/70 mt-2">Years Learning</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">12+</h3><p class="text-white/70 mt-2">Technologies</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Contact Me</h2>
+        <p class="text-white/70">Have a project in mind? Send me a message.</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="glass rounded-3xl p-8" data-aos="fade-right">
+          <h3 class="font-display text-2xl font-bold mb-3">Let's build something amazing</h3>
+          <p class="text-white/70 mb-6">Open to freelance work, collaborations, and full-stack projects.</p>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3 text-white/70"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent"><i class="fas fa-phone"></i></span> 03198018795</li>
+            <li class="flex items-center gap-3 text-white/70"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent"><i class="fas fa-envelope"></i></span> maazmehar9850@gmail.com</li>
+            <li class="flex items-center gap-3 text-white/70"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent"><i class="fas fa-location-dot"></i></span> Pakistan</li>
+          </ul>
+        </div>
+        <form id="contactForm" class="glass rounded-3xl p-8" data-aos="fade-left">
+          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Name</label><input type="text" name="name" required placeholder="Your name" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent" /></div>
+          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Email</label><input type="email" name="email" required placeholder="you@example.com" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent" /></div>
+          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Subject</label><input type="text" name="subject" placeholder="Project inquiry" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent" /></div>
+          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Message</label><textarea name="message" required rows="5" placeholder="Tell me about your project…" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent resize-y"></textarea></div>
+          <button type="submit" id="contactBtn" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep hover:-translate-y-1 transition"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <p id="formStatus" class="mt-3 text-sm min-h-[1.2em]"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-black/30 backdrop-blur py-14 px-4">
+    <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="font-display text-accent text-lg font-bold mb-3">Maaz Mehar</h3>
+        <p class="text-white/70 text-sm leading-relaxed">Professional Web Developer & MERN Stack Developer. I build modern, responsive, user-friendly websites.</p>
+      </div>
+      <div>
+        <h3 class="font-display font-bold mb-3">Quick Links</h3>
+        <div class="space-y-2 text-white/70 text-sm">
+          <p><a href="#home" class="hover:text-accent">Home</a></p>
+          <p><a href="#about" class="hover:text-accent">About</a></p>
+          <p><a href="#projects" class="hover:text-accent">Projects</a></p>
+          <p><a href="#contact" class="hover:text-accent">Contact</a></p>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-display font-bold mb-3">Follow Me</h3>
+        <div class="flex gap-4 text-2xl">
+          <a href="https://www.linkedin.com/in/maaz-mehar-04a7953a1" target="_blank" class="text-white/70 hover:text-accent"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/maazmehar9850-boop/maazportfolio.git" target="_blank" class="text-white/70 hover:text-accent"><i class="fab fa-github"></i></a>
+          <a href="https://www.facebook.com/share/17qAsR5aZf/" target="_blank" class="text-white/70 hover:text-accent"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/1tz_maaz_" target="_blank" class="text-white/70 hover:text-accent"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-white/60 text-sm border-t border-white/10 pt-6">© 2026 Maaz Mehar | All Rights Reserved</p>
+  </footer>
+
+  <a href="https://wa.me/923198018795" target="_blank" class="fixed right-6 bottom-6 w-14 h-14 rounded-full bg-[#25d366] text-white text-2xl grid place-items-center shadow-xl hover:scale-110 transition z-50" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <button id="topBtn" class="fixed left-6 bottom-6 w-14 h-14 rounded-full glass text-white text-xl hidden place-items-center hover:scale-110 transition z-50" aria-label="Back to top">↑</button>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    AOS.init({ duration: 900, once: true, offset: 60 });
+
+    new Typed('#typing', {
+      strings: ['Web Developer', 'MERN Stack Developer', 'Frontend Developer', 'Freelancer'],
+      typeSpeed: 70, backSpeed: 40, loop: true,
+    });
+
+    const skills = [
+      { icon: 'fab fa-html5', color: '#e34c26', title: 'HTML5', desc: 'Modern Website Structure' },
+      { icon: 'fab fa-css3-alt', color: '#264de4', title: 'CSS3', desc: 'Responsive Web Design' },
+      { icon: 'fab fa-js', color: '#f7df1e', title: 'JavaScript', desc: 'Interactive Websites' },
+      { icon: 'fab fa-react', color: '#61dbfb', title: 'React.js', desc: 'Modern Frontend' },
+      { icon: 'fab fa-node-js', color: '#3c873a', title: 'Node.js', desc: 'Backend Development' },
+      { icon: 'fas fa-server', color: '#3ecfbf', title: 'Express.js', desc: 'REST APIs' },
+      { icon: 'fas fa-database', color: '#16a34a', title: 'MongoDB', desc: 'Database Management' },
+      { icon: 'fas fa-wind', color: '#38bdf8', title: 'Tailwind CSS', desc: 'Modern UI Design' },
+      { icon: 'fab fa-bootstrap', color: '#7952b3', title: 'Bootstrap', desc: 'Responsive Components' },
+      { icon: 'fas fa-code', color: '#f0a05a', title: 'C++', desc: 'Programming Fundamentals' },
+      { icon: 'fab fa-git-alt', color: '#f1502f', title: 'Git & GitHub', desc: 'Version Control' },
+      { icon: 'fas fa-laptop-code', color: '#3ecfbf', title: 'Web Design', desc: 'Professional UI / UX' },
+    ];
+
+    document.getElementById('skillsGrid').innerHTML = skills.map(s => `
+      <div class="glass card-glow rounded-3xl p-6 text-center" data-aos="zoom-in">
+        <i class="${s.icon} text-3xl mb-3" style="color:${s.color}"></i>
+        <h3 class="font-semibold text-sm">${s.title}</h3>
+        <p class="text-white/70 text-xs mt-1">${s.desc}</p>
+      </div>`).join('');
+
+    const projects = [
+      { icon: 'fas fa-school', title: 'School Management System', desc: 'Complete MERN Stack School Management System with Admin, Teacher and Student Dashboard.', tech: ['MERN', 'MongoDB', 'Express'] },
+      { icon: 'fas fa-cart-shopping', title: 'E-Commerce Website', desc: 'Modern shopping website with authentication, responsive UI and shopping cart.', tech: ['React', 'Node.js', 'CSS'] },
+      { icon: 'fas fa-user', title: 'Portfolio Website', desc: 'Responsive portfolio built using HTML, CSS, JavaScript and Tailwind CSS.', tech: ['HTML', 'CSS', 'JavaScript'] },
+    ];
+
+    document.getElementById('projectsGrid').innerHTML = projects.map(p => `
+      <article class="glass card-glow rounded-3xl overflow-hidden" data-aos="fade-up">
+        <div class="aspect-video bg-white/5 grid place-items-center text-accent text-4xl"><i class="${p.icon}"></i></div>
+        <div class="p-5">
+          <h3 class="font-display font-bold mb-2">${p.title}</h3>
+          <p class="text-white/70 text-sm mb-3">${p.desc}</p>
+          <div class="flex flex-wrap gap-2">${p.tech.map(t => `<span class="text-xs px-2.5 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent">${t}</span>`).join('')}</div>
+        </div>
+      </article>`).join('');
+
+    const header = document.getElementById('header');
+    const topBtn = document.getElementById('topBtn');
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('nav-scrolled', window.scrollY > 40);
+      topBtn.classList.toggle('hidden', window.scrollY <= 300);
+      topBtn.classList.toggle('grid', window.scrollY > 300);
+      let current = '';
+      document.querySelectorAll('section[id]').forEach(s => {
+        if (window.scrollY >= s.offsetTop - 160) current = s.id;
+      });
+      document.querySelectorAll('.nav-link').forEach(a => {
+        a.classList.toggle('text-white', a.getAttribute('href') === '#' + current);
+        a.classList.toggle('bg-white/10', a.getAttribute('href') === '#' + current);
+      });
+    });
+
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    menuBtn.addEventListener('click', () => navMenu.classList.toggle('open'));
+    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+
+    document.querySelectorAll('.card-glow').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById('formStatus');
+      const btn = document.getElementById('contactBtn');
+
+      status.textContent = '';
+      status.className = 'mt-3 text-sm min-h-[1.2em]';
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            subject: form.subject.value.trim(),
+            message: form.message.value.trim(),
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to send');
+
+        status.textContent = 'Message sent successfully. I will get back to you soon!';
+        status.className = 'mt-3 text-sm text-accent';
+        form.reset();
+      } catch (err) {
+        status.textContent = err.message || 'Something went wrong. Run npm start and try again.';
+        status.className = 'mt-3 text-sm text-red-400';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      }
+    });
+  </script>
+</body>
+</html>
