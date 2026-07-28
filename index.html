@@ -32,7 +32,7 @@
     body {
       font-family: 'Outfit', sans-serif;
       color: #f4f7fb;
-      background: #0a1628;
+      background: #05080f;
     }
     body::before {
       content: '';
@@ -40,10 +40,11 @@
       inset: 0;
       z-index: -2;
       background:
-        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(62, 207, 191, 0.28), transparent 55%),
-        radial-gradient(ellipse 70% 50% at 90% 10%, rgba(240, 160, 90, 0.22), transparent 50%),
-        radial-gradient(ellipse 60% 50% at 70% 90%, rgba(26, 74, 92, 0.7), transparent 55%),
-        linear-gradient(160deg, #071018 0%, #0f2740 45%, #123847 100%);
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(62, 207, 191, 0.22), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 90% 10%, rgba(240, 160, 90, 0.18), transparent 50%),
+        radial-gradient(ellipse 60% 50% at 70% 90%, rgba(12, 24, 32, 0.82), transparent 55%),
+        linear-gradient(160deg, #030507 0%, #09131d 45%, #0d1e29 100%);
     }
     body::after {
       content: '';
@@ -58,11 +59,13 @@
       pointer-events: none;
     }
     .glass {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.28));
+      border: 1px solid rgba(255,255,255,.14);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 20px 50px rgba(0,0,0,.48);
     }
     .hero-glow { animation: floatGlow 8s ease-in-out infinite; }
     .hero-glow.two { animation-delay: -3s; }
@@ -82,8 +85,8 @@
       color: transparent;
     }
     .nav-scrolled {
-      background: rgba(10,22,40,.55);
-      border-bottom: 1px solid rgba(255,255,255,.18);
+      background: rgba(4,7,12,.78);
+      border-bottom: 1px solid rgba(255,255,255,.12);
       backdrop-filter: blur(20px);
     }
     #navMenu.open { display: flex !important; }
@@ -119,11 +122,11 @@
     .card-glow:hover {
       transform: translateY(-8px);
       border-color: rgba(62, 207, 191, 0.55);
-      background: rgba(62, 207, 191, 0.12);
+      background: linear-gradient(180deg, rgba(62, 207, 191, 0.12), rgba(0,0,0,.34));
       box-shadow:
         0 0 0 1px rgba(62, 207, 191, 0.25),
         0 0 28px rgba(62, 207, 191, 0.35),
-        0 20px 50px rgba(0,0,0,.35);
+        0 24px 60px rgba(0,0,0,.55);
     }
     .card-glow:hover::before { opacity: 1; }
     .card-glow:hover::after {
@@ -217,10 +220,10 @@
   <section id="projects" class="py-24 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">My Projects</h2>
-        <p class="text-white/70">Selected work and personal builds.</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Featured Project</h2>
+        <p class="text-white/70">A professional MERN stack product built for modern school operations.</p>
       </div>
-      <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      <div id="projectsGrid" class="grid gap-6"></div>
     </div>
   </section>
 
@@ -350,18 +353,97 @@
       </div>`).join('');
 
     const projects = [
-      { icon: 'fas fa-school', title: 'School Management System', desc: 'Complete MERN Stack School Management System with Admin, Teacher and Student Dashboard.', tech: ['MERN', 'MongoDB', 'Express'] },
-      { icon: 'fas fa-cart-shopping', title: 'E-Commerce Website', desc: 'Modern shopping website with authentication, responsive UI and shopping cart.', tech: ['React', 'Node.js', 'CSS'] },
-      { icon: 'fas fa-user', title: 'Portfolio Website', desc: 'Responsive portfolio built using HTML, CSS, JavaScript and Tailwind CSS.', tech: ['HTML', 'CSS', 'JavaScript'] },
+      {
+        title: 'School Management System',
+        subtitle: 'Professional MERN Stack Platform',
+        desc: 'A professional MERN stack school management system built for admins, teachers, and students, with dedicated dashboards for each role to manage academics, operations, and daily school activities from one connected platform.',
+        highlights: [
+          'Separate admin, teacher, and student dashboards with role-based access',
+          'Attendance, marks, assignments, courses, enrollments, and academic records in one system',
+          'Modern MERN architecture with secure authentication and a polished user experience'
+        ],
+        summary: 'A complete digital campus workspace that helps schools manage people, academics, and operations through role-based dashboards.',
+        tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'JWT Auth', 'Tailwind CSS'],
+        liveUrl: 'https://sms-maaz.vercel.app',
+        githubUrl: 'https://github.com/maazmehar9850-boop/SCHOOL-MANAGEMENT-SYSTEM',
+        images: [
+          { src: 'sms-home.png', alt: 'School Management System home page', size: 'large', position: 'center center', title: 'Landing Page', note: 'Premium first impression with clear CTAs and school branding.' },
+          { src: 'sms-login.png', alt: 'School Management System login page', size: 'small', position: 'center top', title: 'Login Portal', note: 'Secure role-based access for admins, teachers, and students.' },
+          { src: 'sms-dashboard.png', alt: 'School Management System admin dashboard', size: 'small', position: 'left top', title: 'Admin Dashboard', note: 'Operational overview with quick actions, stats, and controls.' }
+        ]
+      }
     ];
 
     document.getElementById('projectsGrid').innerHTML = projects.map(p => `
-      <article class="glass card-glow rounded-3xl overflow-hidden" data-aos="fade-up">
-        <div class="aspect-video bg-white/5 grid place-items-center text-accent text-4xl"><i class="${p.icon}"></i></div>
-        <div class="p-5">
-          <h3 class="font-display font-bold mb-2">${p.title}</h3>
-          <p class="text-white/70 text-sm mb-3">${p.desc}</p>
-          <div class="flex flex-wrap gap-2">${p.tech.map(t => `<span class="text-xs px-2.5 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent">${t}</span>`).join('')}</div>
+      <article class="glass card-glow rounded-[2rem] overflow-hidden" data-aos="fade-up">
+        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-0">
+          <div class="p-6 sm:p-8 lg:p-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs tracking-[0.25em] uppercase bg-accent/10 border border-accent/25 text-accent mb-4">
+              <i class="fas fa-school"></i> ${p.subtitle}
+            </div>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold mb-4">${p.title}</h3>
+            <p class="text-white/70 text-base leading-8 mb-6">${p.desc}</p>
+            <div class="glass rounded-2xl px-5 py-4 mb-6 border border-white/10">
+              <p class="text-sm uppercase tracking-[0.25em] text-accent mb-2">Summary</p>
+              <p class="text-white/80 text-sm sm:text-base">${p.summary}</p>
+            </div>
+            <div class="space-y-3 mb-6">
+              ${p.highlights.map(item => `
+                <div class="flex items-start gap-3 text-white/75">
+                  <span class="mt-1 w-6 h-6 rounded-full bg-accent/15 border border-accent/30 text-accent text-xs grid place-items-center flex-shrink-0">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <p class="text-sm sm:text-base">${item}</p>
+                </div>`).join('')}
+            </div>
+            <div class="flex flex-wrap gap-2 mb-7">
+              ${p.tech.map(t => `<span class="text-xs px-3 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent">${t}</span>`).join('')}
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="${p.liveUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep hover:-translate-y-1 transition">
+                <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+              </a>
+              <a href="${p.githubUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold glass hover:-translate-y-1 transition">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="p-6 sm:p-8 bg-white/[0.02]">
+            <div class="grid gap-4">
+              ${p.images.filter(image => image.size === 'large').map(image => `
+                <a href="${p.liveUrl}" target="_blank" rel="noopener" class="group block rounded-[1.5rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.03] shadow-xl relative" title="Open live project">
+                  <div class="aspect-[16/10] overflow-hidden">
+                    <img src="${image.src}" alt="${image.alt}" class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]" style="object-position:${image.position}" />
+                  </div>
+                  <div class="px-4 py-3 border-t border-white/10 bg-black/20">
+                    <p class="text-sm font-semibold text-white">${image.title}</p>
+                    <p class="text-xs text-white/65 mt-1 leading-5">${image.note}</p>
+                  </div>
+                  <span class="absolute inset-0 bg-deep/0 group-hover:bg-deep/30 transition flex items-center justify-center">
+                    <span class="opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold">
+                      <i class="fas fa-external-link-alt"></i> View Project
+                    </span>
+                  </span>
+                </a>`).join('')}
+              <div class="grid sm:grid-cols-2 gap-4">
+                ${p.images.filter(image => image.size === 'small').map(image => `
+                  <a href="${p.liveUrl}" target="_blank" rel="noopener" class="group block rounded-[1.5rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.03] shadow-xl relative" title="Open live project">
+                    <div class="aspect-[16/10] overflow-hidden">
+                      <img src="${image.src}" alt="${image.alt}" class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]" style="object-position:${image.position}" />
+                    </div>
+                    <div class="px-4 py-3 border-t border-white/10 bg-black/20">
+                      <p class="text-sm font-semibold text-white">${image.title}</p>
+                      <p class="text-xs text-white/65 mt-1 leading-5">${image.note}</p>
+                    </div>
+                    <span class="absolute inset-0 bg-deep/0 group-hover:bg-deep/30 transition flex items-center justify-center">
+                      <span class="opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                      </span>
+                    </span>
+                  </a>`).join('')}
+              </div>
+            </div>
+          </div>
         </div>
       </article>`).join('');
 
