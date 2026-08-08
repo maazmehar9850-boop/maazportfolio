@@ -33,9 +33,11 @@ router.post('/', async (req, res) => {
       },
     });
 
+    const recipient = process.env.EMAIL_TO || 'maazmehar9850@gmail.com';
+
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+      to: recipient,
       replyTo: email,
       subject: subject || `New message from ${name}`,
       html: `

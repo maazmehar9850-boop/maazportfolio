@@ -1,6 +1,10 @@
 const nodemailer = require('nodemailer');
 
-const allowedOrigin = 'https://maazmehar9850-boop.github.io';
+const allowedOrigins = new Set([
+  'https://maazmehar9850-boop.github.io',
+  'http://localhost:5000',
+  'http://127.0.0.1:5000',
+]);
 
 function isEmailConfigured() {
   const pass = (process.env.EMAIL_PASS || '').replace(/\s/g, '');
@@ -8,7 +12,10 @@ function isEmailConfigured() {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  const origin = req.headers.origin || '';
+  if (allowedOrigins.has(origin) || origin.endsWith('.vercel.app')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -44,9 +51,11 @@ module.exports = async (req, res) => {
       },
     });
 
+    const recipient = process.env.EMAIL_TO || 'maazmehar9850@gmail.com';
+
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+      to: recipient,
       replyTo: email,
       subject: subject || `New message from ${name}`,
       html: `

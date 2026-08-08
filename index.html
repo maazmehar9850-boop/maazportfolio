@@ -230,7 +230,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12" data-aos="fade-up">
         <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Featured Project</h2>
-        <p class="text-white/70">A professional MERN stack product built for modern school operations.</p>
+        <p class="text-white/70">A professional MERN stack product built for modern college operations.</p>
       </div>
       <div id="projectsGrid" class="grid gap-6"></div>
     </div>
@@ -334,19 +334,8 @@
   <script>
     const ASSET_VERSION = '20260729c';
     const asset = (file) => `${file}?v=${ASSET_VERSION}`;
-    const CONTACT_CONFIG = (() => {
-      const host = location.hostname;
-      if (host === 'localhost' || host === '127.0.0.1') {
-        return { mode: 'api', url: '/api/contact' };
-      }
-      if (host.includes('vercel.app')) {
-        return { mode: 'api', url: '/api/contact' };
-      }
-      return {
-        mode: 'formsubmit',
-        url: 'https://formsubmit.co/ajax/maazmehar9850@gmail.com',
-      };
-    })();
+    // Nodemailer backend (Express locally / Vercel serverless in production)
+    const CONTACT_CONFIG = { url: '/api/contact' };
 
     new Typed('#typing', {
       strings: ['Web Developer', 'MERN Stack Developer', 'Frontend Developer', 'Freelancer'],
@@ -377,22 +366,26 @@
 
     const projects = [
       {
-        title: 'School Management System',
-        subtitle: 'Professional MERN Stack Platform',
-        desc: 'A professional MERN stack school management system built for admins, teachers, and students, with dedicated dashboards for each role to manage academics, operations, and daily school activities from one connected platform.',
+        title: 'College Management System',
+        subtitle: 'Full Stack MERN Application',
+        desc: 'A full-stack MERN college management platform for Aspira College, designed for admins, teachers, and students. It combines a polished public website with secure role-based portals to manage academics, enrollments, attendance, results, and campus operations from one connected system.',
         highlights: [
-          'Separate admin, teacher, and student dashboards with role-based access',
-          'Attendance, marks, assignments, courses, enrollments, and academic records in one system',
-          'Modern MERN architecture with secure authentication and a polished user experience'
+          'Role-based dashboards for admin, teacher, and student with secure JWT authentication',
+          'Courses, enrollments, attendance, assignments, marks, and fees managed in one platform',
+          'Responsive public site with homepage, programs, campus life, and inquiry contact form'
         ],
-        summary: 'A complete digital campus workspace that helps schools manage people, academics, and operations through role-based dashboards.',
+        summary: 'A complete digital campus workspace that helps colleges manage people, academics, and operations through modern dashboards and a professional student-facing website.',
         tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'JWT Auth', 'Tailwind CSS'],
         liveUrl: 'https://sms-maaz.vercel.app',
         githubUrl: 'https://github.com/maazmehar9850-boop/SCHOOL-MANAGEMENT-SYSTEM',
         images: [
-          { src: 'sms-home.png', alt: 'School Management System home page', size: 'large', title: 'Landing Page', note: 'Premium first impression with clear CTAs and school branding.' },
-          { src: 'sms-login.png', alt: 'School Management System login page', size: 'small', title: 'Login Portal', note: 'Secure role-based access for admins, teachers, and students.' },
-          { src: 'sms-dashboard.png', alt: 'School Management System admin dashboard', size: 'small', title: 'Admin Dashboard', note: 'Operational overview with quick actions, stats, and controls.' }
+          { src: 'cms-preview.png', alt: 'College Management System main preview', size: 'large', title: 'Main Preview', note: 'Full project showcase with responsive UI, admin dashboard, and live demo focus.' },
+          { src: 'cms-login.png', alt: 'College Management System login page', size: 'small', title: 'Login Portal', note: 'Secure sign-in for admin, teacher, and student accounts.' },
+          { src: 'cms-home.png', alt: 'College Management System homepage', size: 'small', title: 'Homepage Hero', note: 'Brand-led landing experience with clear admissions CTAs.' },
+          { src: 'cms-admin.png', alt: 'College Management System admin dashboard', size: 'small', title: 'Admin Dashboard', note: 'Executive overview with KPIs, charts, and campus controls.' },
+          { src: 'cms-programs.png', alt: 'College Management System featured programs', size: 'small', title: 'Featured Programs', note: 'Program cards with apply and learn-more conversion paths.' },
+          { src: 'cms-campus.png', alt: 'College Management System campus life section', size: 'small', title: 'Campus Life', note: 'Campus highlights that showcase community and facilities.' },
+          { src: 'cms-contact.png', alt: 'College Management System contact form', size: 'small', title: 'Contact Form', note: 'Inquiry form with campus details and office hours.' }
         ]
       }
     ];
@@ -402,7 +395,7 @@
         <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-0">
           <div class="p-6 sm:p-8 lg:p-10">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs tracking-[0.25em] uppercase bg-accent/10 border border-accent/25 text-accent mb-4">
-              <i class="fas fa-school"></i> ${p.subtitle}
+              <i class="fas fa-university"></i> ${p.subtitle}
             </div>
             <h3 class="font-display text-3xl sm:text-4xl font-bold mb-4">${p.title}</h3>
             <p class="text-white/70 text-base leading-8 mb-6">${p.desc}</p>
@@ -522,36 +515,13 @@
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
 
       try {
-        let res;
-        let data;
-
-        if (CONTACT_CONFIG.mode === 'api') {
-          res = await fetch(CONTACT_CONFIG.url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-          data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'Failed to send message');
-        } else {
-          res = await fetch(CONTACT_CONFIG.url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({
-              name: payload.name,
-              email: payload.email,
-              subject: payload.subject,
-              message: payload.message,
-              _subject: payload.subject || `Portfolio message from ${payload.name}`,
-              _captcha: 'false',
-              _template: 'table',
-            }),
-          });
-          data = await res.json();
-          if (data.success !== 'true' && data.success !== true) {
-            throw new Error(data.message || 'Failed to send message');
-          }
-        }
+        const res = await fetch(CONTACT_CONFIG.url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to send message');
 
         status.textContent = 'Message sent successfully. I will get back to you soon!';
         status.className = 'mt-3 text-sm text-accent';
