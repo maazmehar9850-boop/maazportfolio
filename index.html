@@ -20,19 +20,74 @@
             body: ['Outfit', 'sans-serif'],
           },
           colors: {
-            deep: '#0a1628',
-            accent: '#3ecfbf',
-            accent2: '#f0a05a',
+            deep: '#000000',
+            ink: '#05080f',
+            accent: '#1e4fd6',
+            accent2: '#2a5fd4',
+            navy: '#0a1220',
           },
         },
       },
     };
   </script>
   <style>
+    :root {
+      --blue: #1e4fd6;
+      --blue-soft: #3a6ee8;
+      --blue-deep: #0c1f4a;
+    }
     body {
       font-family: 'Outfit', sans-serif;
-      color: #f4f7fb;
-      background: #05080f;
+      color: #e6ebf5;
+      background: #000000;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .font-display {
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #1e4fd6;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+    }
+    .section-lead {
+      max-width: 34rem;
+      margin-inline: auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .body-copy {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      font-weight: 400;
+      opacity: 0.78;
     }
     body::before {
       content: '';
@@ -40,11 +95,10 @@
       inset: 0;
       z-index: -2;
       background:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.35)),
-        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(62, 207, 191, 0.22), transparent 55%),
-        radial-gradient(ellipse 70% 50% at 90% 10%, rgba(240, 160, 90, 0.18), transparent 50%),
-        radial-gradient(ellipse 60% 50% at 70% 90%, rgba(12, 24, 32, 0.82), transparent 55%),
-        linear-gradient(160deg, #030507 0%, #09131d 45%, #0d1e29 100%);
+        radial-gradient(ellipse 70% 50% at 6% 10%, rgba(14, 40, 110, 0.35), transparent 58%),
+        radial-gradient(ellipse 55% 40% at 94% 6%, rgba(12, 31, 74, 0.28), transparent 52%),
+        radial-gradient(ellipse 50% 45% at 75% 95%, rgba(5, 10, 22, 0.9), transparent 55%),
+        linear-gradient(165deg, #000000 0%, #05080f 40%, #02050c 100%);
     }
     body::after {
       content: '';
@@ -52,20 +106,68 @@
       inset: 0;
       z-index: -1;
       background-image:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+        linear-gradient(rgba(30,79,214,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,79,214,.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
       pointer-events: none;
     }
     .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.28));
-      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(14,40,110,.12), rgba(0,0,0,.72));
+      border: 1px solid rgba(42,95,212,.18);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 20px 50px rgba(0,0,0,.48);
+        inset 0 1px 0 rgba(58,110,232,.06),
+        0 20px 50px rgba(0,0,0,.65);
+    }
+    .section-blue {
+      background:
+        linear-gradient(180deg, rgba(8,18,40,.95), rgba(0,0,0,.55)),
+        radial-gradient(ellipse 60% 70% at 90% 20%, rgba(14,40,110,.45), transparent 65%);
+      border-block: 1px solid rgba(30,79,214,.14);
+    }
+    .section-light {
+      background:
+        linear-gradient(180deg, #f7f9fc 0%, #eef3fb 55%, #e8eef8 100%);
+      color: #0b1220;
+    }
+    .section-light h2,
+    .section-light .section-title,
+    .section-light .glass-light h3,
+    .section-light .glass-light .font-display,
+    .section-light .glass-light .card-title {
+      color: #060b16;
+    }
+    .section-light .muted,
+    .section-light .text-soft,
+    .section-light .section-lead,
+    .section-light .glass-light .body-copy,
+    .section-light .glass-light .card-desc {
+      color: #4b5872;
+    }
+    .section-light .section-kicker {
+      color: #1e4fd6;
+    }
+    .section-light .glass-light {
+      background: #ffffff;
+      border: 1px solid rgba(30,79,214,.12);
+      box-shadow: 0 18px 40px rgba(15, 35, 80, 0.08);
+    }
+    .section-light .glass-light.card-glow:hover {
+      border-color: rgba(30, 79, 214, 0.45);
+      background: #ffffff;
+      box-shadow:
+        calc((var(--mx-n, 0.5) - 0.5) * 28px) calc((var(--my-n, 0.5) - 0.5) * 28px) 36px rgba(30, 79, 214, 0.28),
+        0 18px 40px rgba(15, 35, 80, 0.1);
+    }
+    .section-light .glass-light.card-glow::before {
+      background: radial-gradient(
+        160px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(30, 79, 214, 0.95),
+        rgba(30, 79, 214, 0.35) 28%,
+        transparent 58%
+      );
     }
     .hero-glow { animation: floatGlow 8s ease-in-out infinite; }
     .hero-glow.two { animation-delay: -3s; }
@@ -73,41 +175,107 @@
       0%, 100% { transform: translateY(0) scale(1); }
       50% { transform: translateY(-30px) scale(1.08); }
     }
-    .hero-frame { animation: morph 10s ease-in-out infinite; }
+    .hero-frame {
+      animation: morph 10s ease-in-out infinite;
+      box-shadow: 0 0 0 1px rgba(30,79,214,.4), 0 25px 60px rgba(0,0,0,.7);
+    }
     @keyframes morph {
       0%, 100% { border-radius: 36% 64% 52% 48% / 42% 38% 62% 58%; }
       50% { border-radius: 58% 42% 38% 62% / 48% 56% 44% 52%; }
     }
     .gradient-text {
-      background: linear-gradient(120deg, #fff 20%, #3ecfbf 70%, #f0a05a);
+      background: linear-gradient(120deg, #ffffff 8%, #7aa2f0 50%, #1e4fd6 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
+    .btn-primary {
+      background: linear-gradient(135deg, #1e4fd6, #0c1f4a);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
     .nav-scrolled {
-      background: rgba(4,7,12,.78);
-      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.88);
+      border-bottom: 1px solid rgba(30,79,214,.2);
       backdrop-filter: blur(20px);
     }
     #navMenu.open { display: flex !important; }
-    .card-glow {
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-      transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
+    @media (max-width: 767px) {
+      #navMenu {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 1rem;
+        right: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+        padding: 0.75rem;
+        border-radius: 1.25rem;
+        background: rgba(0, 0, 0, 0.96);
+        border: 1px solid rgba(30, 79, 214, 0.22);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      }
+      #navMenu li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem;
+      }
     }
+    .about-cutout {
+      background: #ffffff;
+      border: 1px solid rgba(30,79,214,.12);
+      border-radius: 1.75rem;
+      box-shadow: 0 18px 40px rgba(15, 35, 80, 0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 420px;
+      padding: 1.25rem 1.25rem 0;
+      overflow: hidden;
+    }
+    .about-cutout img {
+      width: min(100%, 400px);
+      height: auto;
+      object-fit: contain;
+      filter: none;
+    }
+    .card-glow {
+      --mx: 50%;
+      --my: 50%;
+      --mx-n: 0.5;
+      --my-n: 0.5;
+      position: relative;
+      transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+    /* Light only on the border ring — not inside the card */
     .card-glow::before {
       content: '';
       position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(62, 207, 191, 0.45), transparent 42%);
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(
+        160px circle at var(--mx) var(--my),
+        rgba(147, 197, 253, 0.95),
+        rgba(59, 130, 246, 0.55) 28%,
+        transparent 58%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
       opacity: 0;
-      transition: opacity .35s ease;
+      transition: opacity .3s ease;
       pointer-events: none;
-      z-index: 0;
+      z-index: 3;
     }
     .project-shot {
-      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.2));
+      background: linear-gradient(180deg, rgba(0,0,0,.65), rgba(5,8,15,.45));
     }
     .project-shot img {
       width: 100%;
@@ -115,36 +283,70 @@
       display: block;
       image-rendering: -webkit-optimize-contrast;
     }
-    .card-glow::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 55%;
-      height: 100%;
-      background: linear-gradient(105deg, transparent 20%, rgba(62, 207, 191, 0.28) 45%, rgba(255,255,255,0.18) 50%, rgba(62, 207, 191, 0.22) 55%, transparent 80%);
-      transform: skewX(-18deg);
-      transition: none;
-      pointer-events: none;
-      z-index: 1;
-    }
     .card-glow:hover {
       transform: translateY(-8px);
-      border-color: rgba(62, 207, 191, 0.55);
-      background: linear-gradient(180deg, rgba(62, 207, 191, 0.12), rgba(0,0,0,.34));
+      border-color: rgba(96, 165, 250, 0.55);
       box-shadow:
-        0 0 0 1px rgba(62, 207, 191, 0.25),
-        0 0 28px rgba(62, 207, 191, 0.35),
-        0 24px 60px rgba(0,0,0,.55);
+        calc((var(--mx-n) - 0.5) * 32px) calc((var(--my-n) - 0.5) * 32px) 40px rgba(59, 130, 246, 0.35),
+        0 24px 60px rgba(0, 0, 0, 0.55);
     }
     .card-glow:hover::before { opacity: 1; }
-    .card-glow:hover::after {
-      animation: cardShine .85s ease forwards;
+    .card-glow > *:not(.card-overlay) { position: relative; z-index: 2; }
+
+    /* Project screenshot cards — outer glow must not be clipped */
+    .img-card-glow {
+      --mx: 50%;
+      --my: 50%;
+      --mx-n: 0.5;
+      --my-n: 0.5;
+      position: relative;
+      z-index: 2;
+      display: block;
+      transition: transform .35s ease, border-color .3s ease, box-shadow .35s ease;
     }
-    .card-glow > * { position: relative; z-index: 2; }
-    @keyframes cardShine {
-      0% { left: -120%; }
-      100% { left: 140%; }
+    .img-card-glow .img-card-inner {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border-radius: inherit;
+      height: 100%;
+    }
+    .img-card-glow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: radial-gradient(
+        180px circle at var(--mx) var(--my),
+        #93c5fd 0%,
+        #1e4fd6 32%,
+        transparent 62%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity .25s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .img-card-glow:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(147, 197, 253, 0.85) !important;
+      box-shadow:
+        calc((var(--mx-n) - 0.5) * 40px) calc((var(--my-n) - 0.5) * 40px) 48px rgba(59, 130, 246, 0.55),
+        0 0 0 1px rgba(147, 197, 253, 0.45),
+        0 22px 45px rgba(0, 0, 0, 0.55);
+    }
+    .img-card-glow:hover::before { opacity: 1; }
+    .img-card-glow .card-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -152,145 +354,158 @@
 
   <!-- Navbar -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 py-3.5 transition-all duration-300">
-    <nav class="max-w-6xl mx-auto px-4 flex items-center justify-between gap-6">
-      <a href="#home" class="font-display font-bold text-xl tracking-tight">Maaz <span class="text-accent">Mehar</span></a>
-      <button id="menuBtn" class="md:hidden w-11 h-11 glass rounded-xl grid place-items-center" aria-label="Menu">
-        <i class="fas fa-bars"></i>
+    <nav class="relative max-w-6xl mx-auto px-4 flex items-center justify-between gap-4">
+      <a href="#home" class="font-display font-bold text-xl tracking-tight shrink-0">Maaz <span class="text-accent">Mehar</span></a>
+      <button id="menuBtn" type="button" class="md:hidden w-11 h-11 glass rounded-xl grid place-items-center text-white" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <i id="menuIcon" class="fas fa-bars"></i>
       </button>
-      <ul id="navMenu" class="hidden md:flex items-center gap-2 list-none">
+      <ul id="navMenu" class="hidden md:flex md:items-center md:gap-2 list-none m-0 p-0">
         <li><a href="#home" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">Home</a></li>
         <li><a href="#about" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">About</a></li>
         <li><a href="#skills" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">Skills</a></li>
         <li><a href="#projects" class="nav-link px-3.5 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition">Projects</a></li>
-        <li><a href="#contact" class="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep">Contact</a></li>
+        <li><a href="#contact" class="nav-link px-4 py-2 rounded-full text-sm font-semibold btn-primary">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero -->
   <section id="home" class="min-h-screen grid place-items-center relative overflow-hidden pt-28 pb-20 px-4">
-    <div class="hero-glow absolute w-[420px] h-[420px] rounded-full blur-[80px] opacity-45 bg-accent top-[10%] -left-[5%] pointer-events-none"></div>
-    <div class="hero-glow two absolute w-[420px] h-[420px] rounded-full blur-[80px] opacity-45 bg-accent2 bottom-[5%] -right-[8%] pointer-events-none"></div>
+    <div class="hero-glow absolute w-[420px] h-[420px] rounded-full blur-[90px] opacity-25 bg-[#0c1f4a] top-[10%] -left-[5%] pointer-events-none"></div>
+    <div class="hero-glow two absolute w-[380px] h-[380px] rounded-full blur-[100px] opacity-20 bg-[#1e4fd6] bottom-[5%] -right-[8%] pointer-events-none"></div>
     <div class="max-w-6xl w-full grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
       <div data-aos="fade-right">
-        <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-none tracking-tight mb-4">
+        <p class="section-kicker text-accent2 mb-4 tracking-[0.32em]">Portfolio / 2026</p>
+        <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-[4.75rem] leading-[0.95] tracking-[-0.04em] mb-5">
           <span class="gradient-text block">Maaz</span>
           <span class="gradient-text block">Mehar</span>
         </h1>
-        <p class="text-lg sm:text-xl text-white/70 mb-4 min-h-[1.6em]"><span id="typing" class="text-accent font-semibold"></span></p>
-        <p class="text-white/70 max-w-md mb-7 text-lg">Building modern websites and MERN stack applications with clean code, responsive layouts, and glass-smooth interfaces.</p>
+        <p class="text-xl sm:text-2xl text-white/85 mb-4 min-h-[1.6em] font-medium tracking-tight">
+          <span id="typing" class="text-accent font-semibold"></span>
+        </p>
+        <p class="text-white/65 max-w-lg mb-8 text-base sm:text-lg leading-relaxed">
+          I design and build modern websites and MERN stack apps — clean code, responsive layouts, and polished interfaces that feel intentional.
+        </p>
         <div class="flex flex-wrap gap-3">
-          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep shadow-lg shadow-accent/30 hover:-translate-y-1 transition"><i class="fas fa-paper-plane"></i> Hire Me</a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold btn-primary hover:-translate-y-1 transition"><i class="fas fa-paper-plane"></i> Hire Me</a>
           <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold glass hover:-translate-y-1 transition"><i class="fas fa-briefcase"></i> View Work</a>
         </div>
       </div>
       <div class="justify-self-center lg:justify-self-end order-first lg:order-none" data-aos="zoom-in">
-        <div class="hero-frame w-72 sm:w-80 aspect-square p-2.5 bg-gradient-to-br from-accent/55 via-accent2/35 to-white/10 shadow-2xl">
-          <img src="profile.jpg" alt="Maaz Mehar" class="w-full h-full object-cover rounded-[inherit]" onerror="this.src='https://ui-avatars.com/api/?name=Maaz+Mehar&background=3ecfbf&color=041018&size=400'" />
+        <div class="hero-frame w-72 sm:w-80 aspect-square p-2.5 bg-gradient-to-br from-[#1e4fd6]/40 via-[#0c1f4a]/50 to-black">
+          <img src="profile.jpg" alt="Maaz Mehar" class="w-full h-full object-cover rounded-[inherit]" onerror="this.src='https://ui-avatars.com/api/?name=Maaz+Mehar&background=0c1f4a&color=e6ebf5&size=400'" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-24 px-4">
+  <!-- About (white) -->
+  <section id="about" class="py-24 px-4 section-light">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">About Me</h2>
-        <p class="text-white/70 max-w-lg mx-auto">A developer focused on polished experiences and reliable full-stack delivery.</p>
+      <div class="text-center mb-14" data-aos="fade-up">
+        <p class="section-kicker">About</p>
+        <h2 class="section-title text-3xl sm:text-4xl md:text-[2.75rem] mb-3">About Me</h2>
+        <p class="section-lead text-soft">Polished experiences, reliable full-stack delivery, and interfaces that stay clear under pressure.</p>
       </div>
       <div class="grid lg:grid-cols-2 gap-9 items-center">
-        <div class="glass rounded-3xl p-3 overflow-hidden" data-aos="zoom-in">
-          <img src="about.jpg" alt="About Maaz" class="w-full rounded-2xl aspect-[4/5] object-cover" onerror="this.style.display='none'" />
+        <div class="about-cutout" data-aos="zoom-in">
+          <img src="about.png?v=20260808d" alt="About Maaz" onerror="this.src='about.jpg'" />
         </div>
-        <div class="glass rounded-3xl p-8 lg:p-9" data-aos="fade-left">
-          <h3 class="font-display text-2xl font-bold mb-4">Who Am I?</h3>
-          <p class="text-white/70 mb-3">Hi, I'm <strong class="text-white">Maaz Mehar</strong>, a passionate web developer specializing in modern, responsive, and user-friendly websites.</p>
-          <p class="text-white/70 mb-3">I work with HTML, CSS, JavaScript, React.js, Node.js, Express.js, and MongoDB to ship professional web applications.</p>
-          <p class="text-white/70 mb-6">Currently leveling up advanced MERN skills and available for freelance projects.</p>
-          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep hover:-translate-y-1 transition"><i class="fas fa-briefcase"></i> View Projects</a>
+        <div class="glass-light card-glow rounded-3xl p-8 lg:p-10" data-aos="fade-left">
+          <p class="section-kicker mb-3">Intro</p>
+          <h3 class="card-title text-2xl sm:text-3xl mb-5">Who Am I?</h3>
+          <p class="body-copy text-soft mb-4">Hi, I'm <strong class="text-[#0b1220] font-semibold">Maaz Mehar</strong> — a web developer focused on modern, responsive, and user-friendly products.</p>
+          <p class="body-copy text-soft mb-4">I work across HTML, CSS, JavaScript, React.js, Node.js, Express.js, and MongoDB to ship clean, production-ready applications.</p>
+          <p class="body-copy text-soft mb-7">Currently deepening advanced MERN skills and open for freelance work that needs clarity, speed, and craft.</p>
+          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold btn-primary hover:-translate-y-1 transition"><i class="fas fa-briefcase"></i> View Projects</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-24 px-4">
+  <!-- Skills (blue/black) -->
+  <section id="skills" class="py-24 px-4 section-blue">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">My Skills</h2>
-        <p class="text-white/70">Tools and technologies I use to design, build, and ship products.</p>
+      <div class="text-center mb-14" data-aos="fade-up">
+        <p class="section-kicker">Stack</p>
+        <h2 class="section-title text-3xl sm:text-4xl md:text-[2.75rem] mb-3 text-white">My Skills</h2>
+        <p class="section-lead text-white/65">The tools I use to design, build, and ship products end to end.</p>
       </div>
       <div id="skillsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="py-24 px-4">
+  <!-- Projects (white) -->
+  <section id="projects" class="py-24 px-4 section-light">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Featured Project</h2>
-        <p class="text-white/70">A professional MERN stack product built for modern college operations.</p>
+      <div class="text-center mb-14" data-aos="fade-up">
+        <p class="section-kicker">Work</p>
+        <h2 class="section-title text-3xl sm:text-4xl md:text-[2.75rem] mb-3">Featured Project</h2>
+        <p class="section-lead text-soft">A full-stack MERN product shaped for real college operations and daily campus workflows.</p>
       </div>
       <div id="projectsGrid" class="grid gap-6"></div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="py-24 px-4">
+  <!-- Services (blue/black) -->
+  <section id="services" class="py-24 px-4 section-blue">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">My Services</h2>
-        <p class="text-white/70">What I can help you build.</p>
+      <div class="text-center mb-14" data-aos="fade-up">
+        <p class="section-kicker">Offer</p>
+        <h2 class="section-title text-3xl sm:text-4xl md:text-[2.75rem] mb-3 text-white">My Services</h2>
+        <p class="section-lead text-white/65">Focused delivery across frontend, backend, and interface craft.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-laptop-code text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">Frontend Development</h3><p class="text-white/70 text-sm">Modern responsive websites.</p></div>
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-server text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">Backend Development</h3><p class="text-white/70 text-sm">Node.js & Express APIs.</p></div>
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-mobile-screen-button text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">Responsive Design</h3><p class="text-white/70 text-sm">Mobile, tablet & desktop.</p></div>
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-palette text-3xl text-accent mb-3"></i><h3 class="font-semibold mb-1">UI / UX Design</h3><p class="text-white/70 text-sm">Professional glass interfaces.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-laptop-code text-3xl text-accent mb-4"></i><h3 class="card-title text-base text-white mb-2">Frontend Development</h3><p class="card-desc text-white/70">Modern responsive websites with clean structure and motion.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-server text-3xl text-accent mb-4"></i><h3 class="card-title text-base text-white mb-2">Backend Development</h3><p class="card-desc text-white/70">Node.js & Express APIs built for clarity and scale.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-mobile-screen-button text-3xl text-accent mb-4"></i><h3 class="card-title text-base text-white mb-2">Responsive Design</h3><p class="card-desc text-white/70">Layouts that stay sharp on mobile, tablet, and desktop.</p></div>
+        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="zoom-in"><i class="fas fa-palette text-3xl text-accent mb-4"></i><h3 class="card-title text-base text-white mb-2">UI / UX Design</h3><p class="card-desc text-white/70">Professional interfaces with hierarchy and purpose.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Experience -->
-  <section id="experience" class="py-24 px-4">
+  <!-- Experience (white) -->
+  <section id="experience" class="py-24 px-4 section-light">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Experience</h2>
-        <p class="text-white/70">Numbers that reflect the journey so far.</p>
+      <div class="text-center mb-14" data-aos="fade-up">
+        <p class="section-kicker">Journey</p>
+        <h2 class="section-title text-3xl sm:text-4xl md:text-[2.75rem] mb-3">Experience</h2>
+        <p class="section-lead text-soft">A quick snapshot of the work and learning behind the craft.</p>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">15+</h3><p class="text-white/70 mt-2">Projects</p></div>
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">10+</h3><p class="text-white/70 mt-2">Clients</p></div>
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">2+</h3><p class="text-white/70 mt-2">Years Learning</p></div>
-        <div class="glass card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl text-accent font-bold">12+</h3><p class="text-white/70 mt-2">Technologies</p></div>
+        <div class="glass-light card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl sm:text-5xl text-accent font-bold tracking-tight">15+</h3><p class="card-desc text-soft mt-2.5 font-medium tracking-wide uppercase text-[0.7rem] !opacity-100" style="letter-spacing:0.18em">Projects</p></div>
+        <div class="glass-light card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl sm:text-5xl text-accent font-bold tracking-tight">10+</h3><p class="card-desc text-soft mt-2.5 font-medium tracking-wide uppercase text-[0.7rem] !opacity-100" style="letter-spacing:0.18em">Clients</p></div>
+        <div class="glass-light card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl sm:text-5xl text-accent font-bold tracking-tight">2+</h3><p class="card-desc text-soft mt-2.5 font-medium tracking-wide uppercase text-[0.7rem] !opacity-100" style="letter-spacing:0.18em">Years Learning</p></div>
+        <div class="glass-light card-glow rounded-3xl p-7 text-center" data-aos="fade-up"><h3 class="font-display text-4xl sm:text-5xl text-accent font-bold tracking-tight">12+</h3><p class="card-desc text-soft mt-2.5 font-medium tracking-wide uppercase text-[0.7rem] !opacity-100" style="letter-spacing:0.18em">Technologies</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-24 px-4">
+  <!-- Contact (blue/black) -->
+  <section id="contact" class="py-24 px-4 section-blue">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Contact Me</h2>
-        <p class="text-white/70">Have a project in mind? Send me a message.</p>
+      <div class="text-center mb-14" data-aos="fade-up">
+        <p class="section-kicker">Connect</p>
+        <h2 class="section-title text-3xl sm:text-4xl md:text-[2.75rem] mb-3 text-white">Contact Me</h2>
+        <p class="section-lead text-white/65">Have a project in mind? Send a message — I'll get back soon.</p>
       </div>
       <div class="grid lg:grid-cols-2 gap-6">
-        <div class="glass rounded-3xl p-8" data-aos="fade-right">
-          <h3 class="font-display text-2xl font-bold mb-3">Let's build something amazing</h3>
-          <p class="text-white/70 mb-6">Open to freelance work, collaborations, and full-stack projects.</p>
+        <div class="glass rounded-3xl p-8 lg:p-9" data-aos="fade-right">
+          <p class="section-kicker mb-3">Availability</p>
+          <h3 class="card-title text-2xl sm:text-3xl mb-3 text-white">Let's build something sharp</h3>
+          <p class="body-copy text-white/65 mb-7">Open to freelance work, collaborations, and full-stack products that need a clean frontend and solid backend.</p>
           <ul class="space-y-4">
-            <li class="flex items-center gap-3 text-white/70"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent"><i class="fas fa-phone"></i></span> 03198018795</li>
-            <li class="flex items-center gap-3 text-white/70"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent"><i class="fas fa-envelope"></i></span> maazmehar9850@gmail.com</li>
-            <li class="flex items-center gap-3 text-white/70"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent"><i class="fas fa-location-dot"></i></span> Pakistan</li>
+            <li class="flex items-center gap-3 text-white/80 text-[0.95rem]"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent shrink-0"><i class="fas fa-phone"></i></span> 03198018795</li>
+            <li class="flex items-center gap-3 text-white/80 text-[0.95rem] break-all"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent shrink-0"><i class="fas fa-envelope"></i></span> maazmehar9850@gmail.com</li>
+            <li class="flex items-center gap-3 text-white/80 text-[0.95rem]"><span class="w-10 h-10 glass rounded-xl grid place-items-center text-accent shrink-0"><i class="fas fa-location-dot"></i></span> Pakistan</li>
           </ul>
         </div>
-        <form id="contactForm" class="glass rounded-3xl p-8" data-aos="fade-left">
-          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Name</label><input type="text" name="name" required placeholder="Your name" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent" /></div>
-          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Email</label><input type="email" name="email" required placeholder="you@example.com" autocomplete="email" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent" /></div>
-          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Subject</label><input type="text" name="subject" placeholder="Project inquiry" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent" /></div>
-          <div class="mb-4"><label class="text-sm text-white/70 block mb-1">Message</label><textarea name="message" required rows="5" placeholder="Tell me about your project…" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white outline-none focus:border-accent resize-y"></textarea></div>
-          <button type="submit" id="contactBtn" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep hover:-translate-y-1 transition"><i class="fas fa-paper-plane"></i> Send Message</button>
+        <form id="contactForm" class="glass rounded-3xl p-8 lg:p-9" data-aos="fade-left">
+          <div class="mb-4"><label class="text-xs font-semibold tracking-[0.16em] uppercase text-white/55 block mb-2">Name</label><input type="text" name="name" required placeholder="Your name" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/35 outline-none focus:border-accent" /></div>
+          <div class="mb-4"><label class="text-xs font-semibold tracking-[0.16em] uppercase text-white/55 block mb-2">Email</label><input type="email" name="email" required placeholder="you@example.com" autocomplete="email" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/35 outline-none focus:border-accent" /></div>
+          <div class="mb-4"><label class="text-xs font-semibold tracking-[0.16em] uppercase text-white/55 block mb-2">Subject</label><input type="text" name="subject" placeholder="Project inquiry" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/35 outline-none focus:border-accent" /></div>
+          <div class="mb-4"><label class="text-xs font-semibold tracking-[0.16em] uppercase text-white/55 block mb-2">Message</label><textarea name="message" required rows="5" placeholder="Tell me about your project…" class="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/35 outline-none focus:border-accent resize-y"></textarea></div>
+          <button type="submit" id="contactBtn" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold btn-primary hover:-translate-y-1 transition"><i class="fas fa-paper-plane"></i> Send Message</button>
           <p id="formStatus" class="mt-3 text-sm min-h-[1.2em]"></p>
         </form>
       </div>
@@ -301,20 +516,20 @@
   <footer class="border-t border-white/10 bg-black/30 backdrop-blur py-14 px-4">
     <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
       <div>
-        <h3 class="font-display text-accent text-lg font-bold mb-3">Maaz Mehar</h3>
-        <p class="text-white/70 text-sm leading-relaxed">Professional Web Developer & MERN Stack Developer. I build modern, responsive, user-friendly websites.</p>
+        <h3 class="font-display text-accent text-lg font-bold mb-3 tracking-tight">Maaz Mehar</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Web Developer & MERN Stack Developer — modern, responsive, user-focused websites.</p>
       </div>
       <div>
-        <h3 class="font-display font-bold mb-3">Quick Links</h3>
-        <div class="space-y-2 text-white/70 text-sm">
-          <p><a href="#home" class="hover:text-accent">Home</a></p>
-          <p><a href="#about" class="hover:text-accent">About</a></p>
-          <p><a href="#projects" class="hover:text-accent">Projects</a></p>
-          <p><a href="#contact" class="hover:text-accent">Contact</a></p>
+        <h3 class="font-display font-bold mb-3 tracking-tight text-[0.95rem]">Quick Links</h3>
+        <div class="space-y-2 text-white/60 text-sm">
+          <p><a href="#home" class="hover:text-accent transition">Home</a></p>
+          <p><a href="#about" class="hover:text-accent transition">About</a></p>
+          <p><a href="#projects" class="hover:text-accent transition">Projects</a></p>
+          <p><a href="#contact" class="hover:text-accent transition">Contact</a></p>
         </div>
       </div>
       <div>
-        <h3 class="font-display font-bold mb-3">Follow Me</h3>
+        <h3 class="font-display font-bold mb-3 tracking-tight text-[0.95rem]">Follow Me</h3>
         <div class="flex gap-4 text-2xl">
           <a href="https://www.linkedin.com/in/maaz-mehar-04a7953a1" target="_blank" class="text-white/70 hover:text-accent"><i class="fab fa-linkedin"></i></a>
           <a href="https://github.com/maazmehar9850-boop/maazportfolio.git" target="_blank" class="text-white/70 hover:text-accent"><i class="fab fa-github"></i></a>
@@ -323,7 +538,7 @@
         </div>
       </div>
     </div>
-    <p class="text-center text-white/60 text-sm border-t border-white/10 pt-6">© 2026 Maaz Mehar | All Rights Reserved</p>
+    <p class="text-center text-white/45 text-xs tracking-[0.14em] uppercase border-t border-white/10 pt-6">© 2026 Maaz Mehar · All Rights Reserved</p>
   </footer>
 
   <a href="https://wa.me/923198018795" target="_blank" class="fixed right-6 bottom-6 w-14 h-14 rounded-full bg-[#25d366] text-white text-2xl grid place-items-center shadow-xl hover:scale-110 transition z-50" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -332,7 +547,7 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-    const ASSET_VERSION = '20260729c';
+    const ASSET_VERSION = '20260808a';
     const asset = (file) => `${file}?v=${ASSET_VERSION}`;
     // Nodemailer backend (Express locally / Vercel serverless in production)
     const CONTACT_CONFIG = { url: '/api/contact' };
@@ -359,9 +574,9 @@
 
     document.getElementById('skillsGrid').innerHTML = skills.map(s => `
       <div class="glass card-glow rounded-3xl p-6 text-center" data-aos="zoom-in">
-        <i class="${s.icon} text-3xl mb-3" style="color:${s.color}"></i>
-        <h3 class="font-semibold text-sm">${s.title}</h3>
-        <p class="text-white/70 text-xs mt-1">${s.desc}</p>
+        <i class="${s.icon} text-3xl mb-3.5" style="color:${s.color}"></i>
+        <h3 class="card-title text-[0.95rem] text-white mb-1.5">${s.title}</h3>
+        <p class="card-desc text-white/65 text-[0.78rem]">${s.desc}</p>
       </div>`).join('');
 
     const projects = [
@@ -391,17 +606,17 @@
     ];
 
     document.getElementById('projectsGrid').innerHTML = projects.map(p => `
-      <article class="glass card-glow rounded-[2rem] overflow-hidden" data-aos="fade-up">
+      <article class="card-glow rounded-[2rem] border border-[#1e4fd6]/20 shadow-xl" style="background:linear-gradient(180deg,rgba(8,18,40,.98),rgba(0,0,0,.95));color:#e6ebf5" data-aos="fade-up">
         <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-0">
           <div class="p-6 sm:p-8 lg:p-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs tracking-[0.25em] uppercase bg-accent/10 border border-accent/25 text-accent mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[0.68rem] font-semibold tracking-[0.22em] uppercase bg-accent/10 border border-accent/25 text-accent mb-5">
               <i class="fas fa-university"></i> ${p.subtitle}
             </div>
-            <h3 class="font-display text-3xl sm:text-4xl font-bold mb-4">${p.title}</h3>
-            <p class="text-white/70 text-base leading-8 mb-6">${p.desc}</p>
-            <div class="glass rounded-2xl px-5 py-4 mb-6 border border-white/10">
-              <p class="text-sm uppercase tracking-[0.25em] text-accent mb-2">Summary</p>
-              <p class="text-white/80 text-sm sm:text-base">${p.summary}</p>
+            <h3 class="card-title text-3xl sm:text-4xl mb-4 text-white">${p.title}</h3>
+            <p class="body-copy text-white/68 mb-6">${p.desc}</p>
+            <div class="rounded-2xl px-5 py-4 mb-6 border border-white/10 bg-white/5">
+              <p class="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-accent mb-2.5">Summary</p>
+              <p class="text-white/80 text-sm sm:text-[0.98rem] leading-relaxed">${p.summary}</p>
             </div>
             <div class="space-y-3 mb-6">
               ${p.highlights.map(item => `
@@ -409,14 +624,14 @@
                   <span class="mt-1 w-6 h-6 rounded-full bg-accent/15 border border-accent/30 text-accent text-xs grid place-items-center flex-shrink-0">
                     <i class="fas fa-check"></i>
                   </span>
-                  <p class="text-sm sm:text-base">${item}</p>
+                  <p class="text-sm sm:text-[0.95rem] leading-relaxed">${item}</p>
                 </div>`).join('')}
             </div>
             <div class="flex flex-wrap gap-2 mb-7">
-              ${p.tech.map(t => `<span class="text-xs px-3 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent">${t}</span>`).join('')}
+              ${p.tech.map(t => `<span class="text-[0.72rem] font-medium px-3 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent tracking-wide">${t}</span>`).join('')}
             </div>
             <div class="flex flex-wrap gap-3">
-              <a href="${p.liveUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold bg-gradient-to-br from-accent to-teal-600 text-deep hover:-translate-y-1 transition">
+              <a href="${p.liveUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold btn-primary hover:-translate-y-1 transition">
                 <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
               </a>
               <a href="${p.githubUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold glass hover:-translate-y-1 transition">
@@ -424,38 +639,42 @@
               </a>
             </div>
           </div>
-          <div class="p-6 sm:p-8 bg-white/[0.02]">
-            <div class="grid gap-4">
+          <div class="p-6 sm:p-8 bg-black/30 lg:rounded-r-[2rem] overflow-visible">
+            <div class="grid gap-5">
               ${p.images.filter(image => image.size === 'large').map(image => `
-                <a href="${p.liveUrl}" target="_blank" rel="noopener" class="group block rounded-[1.5rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.03] shadow-xl relative" title="Open live project">
-                  <div class="project-shot overflow-hidden">
-                    <img src="${asset(image.src)}" alt="${image.alt}" loading="eager" decoding="async" class="transition duration-500 group-hover:scale-[1.02]" />
-                  </div>
-                  <div class="px-4 py-3 border-t border-white/10 bg-black/20">
-                    <p class="text-sm font-semibold text-white">${image.title}</p>
-                    <p class="text-xs text-white/65 mt-1 leading-5">${image.note}</p>
-                  </div>
-                  <span class="absolute inset-0 bg-deep/0 group-hover:bg-deep/30 transition flex items-center justify-center">
-                    <span class="opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold">
-                      <i class="fas fa-external-link-alt"></i> View Project
-                    </span>
-                  </span>
-                </a>`).join('')}
-              <div class="grid sm:grid-cols-2 gap-4">
-                ${p.images.filter(image => image.size === 'small').map(image => `
-                  <a href="${p.liveUrl}" target="_blank" rel="noopener" class="group block rounded-[1.5rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.03] shadow-xl relative" title="Open live project">
+                <a href="${p.liveUrl}" target="_blank" rel="noopener" class="img-card-glow rounded-[1.5rem] border border-white/15 bg-gradient-to-br from-white/10 to-white/[0.03] shadow-xl" title="Open live project">
+                  <div class="img-card-inner group">
                     <div class="project-shot overflow-hidden">
                       <img src="${asset(image.src)}" alt="${image.alt}" loading="eager" decoding="async" class="transition duration-500 group-hover:scale-[1.02]" />
                     </div>
                     <div class="px-4 py-3 border-t border-white/10 bg-black/20">
-                      <p class="text-sm font-semibold text-white">${image.title}</p>
-                      <p class="text-xs text-white/65 mt-1 leading-5">${image.note}</p>
+                      <p class="text-sm font-semibold tracking-tight text-white">${image.title}</p>
+                      <p class="text-[0.78rem] text-white/60 mt-1 leading-relaxed">${image.note}</p>
                     </div>
-                    <span class="absolute inset-0 bg-deep/0 group-hover:bg-deep/30 transition flex items-center justify-center">
+                    <span class="card-overlay bg-deep/0 group-hover:bg-deep/30 transition flex items-center justify-center">
                       <span class="opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold">
                         <i class="fas fa-external-link-alt"></i> View Project
                       </span>
                     </span>
+                  </div>
+                </a>`).join('')}
+              <div class="grid sm:grid-cols-2 gap-5">
+                ${p.images.filter(image => image.size === 'small').map(image => `
+                  <a href="${p.liveUrl}" target="_blank" rel="noopener" class="img-card-glow rounded-[1.5rem] border border-white/15 bg-gradient-to-br from-white/10 to-white/[0.03] shadow-xl" title="Open live project">
+                    <div class="img-card-inner group">
+                      <div class="project-shot overflow-hidden">
+                        <img src="${asset(image.src)}" alt="${image.alt}" loading="eager" decoding="async" class="transition duration-500 group-hover:scale-[1.02]" />
+                      </div>
+                      <div class="px-4 py-3 border-t border-white/10 bg-black/20">
+                        <p class="text-sm font-semibold tracking-tight text-white">${image.title}</p>
+                        <p class="text-[0.78rem] text-white/60 mt-1 leading-relaxed">${image.note}</p>
+                      </div>
+                      <span class="card-overlay bg-deep/0 group-hover:bg-deep/30 transition flex items-center justify-center">
+                        <span class="opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold">
+                          <i class="fas fa-external-link-alt"></i> View Project
+                        </span>
+                      </span>
+                    </div>
                   </a>`).join('')}
               </div>
             </div>
@@ -486,14 +705,37 @@
     });
 
     topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    menuBtn.addEventListener('click', () => navMenu.classList.toggle('open'));
-    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
 
-    document.querySelectorAll('.card-glow').forEach(card => {
+    const menuIcon = document.getElementById('menuIcon');
+    const setMenuOpen = (open) => {
+      navMenu.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menuIcon.className = open ? 'fas fa-xmark' : 'fas fa-bars';
+    };
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenuOpen(!navMenu.classList.contains('open'));
+    });
+    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenuOpen(false)));
+    document.addEventListener('click', (e) => {
+      if (!header.contains(e.target)) setMenuOpen(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
+    });
+
+    document.querySelectorAll('.card-glow, .img-card-glow').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+        const x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+        const y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+        card.style.setProperty('--mx', (x * 100) + '%');
+        card.style.setProperty('--my', (y * 100) + '%');
+        card.style.setProperty('--mx-n', x.toFixed(3));
+        card.style.setProperty('--my-n', y.toFixed(3));
+        if (card.classList.contains('img-card-glow')) e.stopPropagation();
       });
     });
 
