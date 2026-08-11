@@ -768,7 +768,7 @@
         tech: ['React', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB'],
         image: 'cms-preview.png',
         imageAlt: 'College Management System dashboard and product preview',
-        liveUrl: 'https://sms-maaz.vercel.app',
+        liveUrl: 'https://cms-maaz.vercel.app',
         githubUrl: 'https://github.com/maazmehar9850-boop/SCHOOL-MANAGEMENT-SYSTEM',
       },
       {
@@ -777,7 +777,7 @@
         tech: ['React', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
         image: 'cms-home.png',
         imageAlt: 'Aspira College website homepage hero section',
-        liveUrl: 'https://sms-maaz.vercel.app',
+        liveUrl: 'https://cms-maaz.vercel.app',
         githubUrl: 'https://github.com/maazmehar9850-boop/SCHOOL-MANAGEMENT-SYSTEM',
       },
     ];
@@ -794,9 +794,9 @@
 
     document.getElementById('projectsGrid').innerHTML = projects.map(p => `
       <article class="project-card card-glow" data-aos="fade-up">
-        <div class="project-card-media">
+        <a href="${p.liveUrl}" target="_blank" rel="noopener" class="project-card-media block" title="Open live demo">
           <img src="${asset(p.image)}" alt="${p.imageAlt}" loading="lazy" decoding="async" />
-        </div>
+        </a>
         <div class="project-card-body">
           <h3 class="card-title text-xl sm:text-2xl text-white mb-2">${p.title}</h3>
           <p class="text-white/65 text-sm sm:text-[0.95rem] leading-relaxed">${p.desc}</p>
